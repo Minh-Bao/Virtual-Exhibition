@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Virtual Exhibition v.1{% endblock %}
+{% block title 'Virtual Exhibition v.1' %}
 
 {% block body %}
     <h1>{{ pluralize(pins|length, 'Pin') }}</h1>
 
     {% for pin in pins %}
         <article>
-            <h2>{{ pin.title }}</h2>
+            <h2><a href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a></h2>
             <p>{{ pin.description }}</p>
         </article>
     {% endfor %}
