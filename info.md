@@ -17,11 +17,19 @@
 
 ## A faire
 
+-php unit
+-symfony flex et système de recette (recipe): 
+cf "https://afsy.fr/avent/2017/08-symfony-flex-la-nouvelle-facon-de-developper-avec-symfony"
+cf "https://github.com/symfony/recipes"
+
 -Http request methods
 -A voir redirectToRoute();
 -Alias Symfony console sc dans le terminal
 -Customiser les pages d'erreur(cf: symfony.com)
 -Check page https://www.doctrine-project.org/ pour se mettre a jour sur Doctrine.
+
+/!\ Attention lorsque vous mettez à jour vos recettes
+voir ses recette en cours : cmd "symfony recipe"
 
 Voir EntityManagerInterface....
 
@@ -187,3 +195,44 @@ devient
 ```php
 $form = $this->createForm(PinType::class);
 ```
+
+
+### Check la validiter d'un Token
+
+Cf: Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
+```php
+/**
+     * Checks the validity of a CSRF token.
+     *
+     * @param string      $id    The id used when generating the token
+     * @param string|null $token The actual token sent with the request that should be validated
+     */
+    protected function isCsrfTokenValid(string $id, ?string $token): bool
+    {
+        if (!$this->container->has('security.csrf.token_manager')) {
+            throw new \LogicException('CSRF protection is not enabled in your application. Enable it with the "csrf_protection" key in "config/packages/framework.yaml".');
+        }
+
+        return $this->container->get('security.csrf.token_manager')->isTokenValid(new CsrfToken($id, $token));
+    }
+```
+
+
+### Requete http
+
+Lors de l'injection de Request, on peut faire un $POST ou un $GET comme ceci:
+
+```php
+
+function (Request $request) {
+
+    $request->request->all(); //On recupère toutes les données $POST sous forme d'un tableau
+
+    $request->query->all();  //On recupère toutes les données $GET sous forme d'un tableau
+
+    $request->request; // On a accès a plein de méthodes relatif à lobjet httpFoundation/InputBag
+    $request->query; //idem sauf qu'il faut y avoir des param supplémentaire dans l'URL.
+
+}

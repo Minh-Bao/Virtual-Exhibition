@@ -10,6 +10,7 @@
 <a href="{{ path('app_home') }}">Back to menu</a>
 
 <form id="js_pin_delete_form" action="{{ path('app_pins_delete', {id:pin.id}) }}" method="POST" style="display: none;">
+    <input type="text" name="csrf" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
     <input type="hidden" name="_method" value="DELETE">
 </form>
 
