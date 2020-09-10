@@ -236,3 +236,21 @@ function (Request $request) {
     $request->query; //idem sauf qu'il faut y avoir des param supplémentaire dans l'URL.
 
 }
+```
+### Astuce et trucs
+
+Pour mettre a jour les pack composer exécuter: "composer update"
+Composer recipe voir toutes les recettes installées ajouter le nom du packages a la suite de la commande pour avoir des détails sur un package spécifique
+
+Dans un fichier Twig: 
+Le defaut| signifie si le button n'existe pas alors on utilise Create Pin
+On met un filtre et on utilise une valeur par défaut.
+```html
+{{ SubmitButtonText|default('Create Pin') }} <- revient à faire->
+{{ SubmitButtonText ?? 'Create Pin' }} 
+``
+
+### Astuce en cas de pépins
+
+    Lorsque qu'une commande ne passe pas il peut être utile d'executer cette commande
+    "symfony console cache:clear"
