@@ -1,4 +1,4 @@
-### description d'un Pin
+### Description d'un Pin
 
     -Title
     -Description
@@ -17,16 +17,17 @@
 
 ## A faire
 
-A voir redirectToRoute();
-Alias Symfony console sc dans le terminal
-Customiser les pages d'erreur(cf: symfony.com)
-Check page https://www.doctrine-project.org/ pour se mettre a jour sur Doctrine.
+-Http request methods
+-A voir redirectToRoute();
+-Alias Symfony console sc dans le terminal
+-Customiser les pages d'erreur(cf: symfony.com)
+-Check page https://www.doctrine-project.org/ pour se mettre a jour sur Doctrine.
 
 Voir EntityManagerInterface....
 
     Pour persist et flush on a besoin de l'EntityManagerInterface en faisant injection de dépendance(*). function(EntityManagerInterface $em)
 
-    Ce la revient a faire : $em = $this->getDoctrine()->getManager();
+    Cela revient a faire : $em = $this->getDoctrine()->getManager();
         getDoctrine() //recupère Doctrine au niveau de container
         getManager() // recupère EntityManager
 
@@ -37,11 +38,12 @@ Voir EntityManagerInterface....
 
 ### Les Formulaires
 
+
     Eviter de mettre des boutons de type submit 
     -> mettre les bouton au niveau de la "vue"
     form builder-> form -> form view
 
-    Dans le controller:
+Dans le controller:
 
 ```php
 public function create(): Response
@@ -143,3 +145,25 @@ $form = $this->createFormBuilder($pin)
 
         }
 ``` 
+#### Dataclass :
+    On peut set les différente options du type de formulaire dans le fichier 
+    /!\ Grace à la commande " symfony console make:form " on peut creer un template de formulaire qui sera stocké dans le fichier src/Form/(Variable)Type.php, On associe ce formulaire à une entité, il prend donc toute ses caractéristiques.
+    On peut aussi set les différente options du formulaire dans la fonction builForm() " cela revient a modif createFormBuilder() "
+    Enfin on appel ce formulaire grace a la fonction createForm() 
+        /!\ Il est recommande de mettre le dataclass pour les formulaire
+
+ainsi :
+
+```php
+
+$form = $this->createFormBuilder($pin)
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->getForm()
+        ;
+```
+devient
+
+```php
+$form = $this->createForm(PinType::class);
+```
