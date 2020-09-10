@@ -239,6 +239,9 @@ function (Request $request) {
 ```
 ### Astuce et trucs
 
+Attention a l'ordre des routes car Symfonie les charge/cherche puis match ou non dans un certain ordre.
+Pour pallier a certain problème de ce genre: on mettre des priorité aux routes. Par exemple priority=(int).
+
 Pour mettre a jour les pack composer exécuter: "composer update"
 Composer recipe voir toutes les recettes installées ajouter le nom du packages a la suite de la commande pour avoir des détails sur un package spécifique
 
