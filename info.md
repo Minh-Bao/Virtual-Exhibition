@@ -145,6 +145,26 @@ $form = $this->createFormBuilder($pin)
 
         }
 ``` 
+    Pour delete une entree dans la bdd via un bouton et une requete DELETE, il faut faire un formulaire avec un bouton, 
+cf exemple:
+
+```html
+<form action="{{ path('nom_de_route_1') }}" method="POST">
+    <input type="hidden" name="_method" value="DELETE"> <- /!\ faire bien attention a mettre input en hidden avec le value="delete"->
+    <input type="submit" value="Delete">
+</form>
+```
+On peut aussi passer par JS pour mettre un lien <a href> à la place:
+
+```html
+<a href="#" onclick="event.preventDefault(); document.getElementById('js_form_delete').submit();">Delete Artwork</a>
+<a href="{{ path('nom_de_route_2') }}">Back to menu</a>
+
+<form id="js_form_delete" action="{{ path('nom_de_route_1') }}" method="POST" style="display: none;">
+    <input type="hidden" name="_method" value="DELETE">
+</form>
+```
+
 #### Dataclass :
     On peut set les différente options du type de formulaire dans le fichier 
     /!\ Grace à la commande " symfony console make:form " on peut creer un template de formulaire qui sera stocké dans le fichier src/Form/(Variable)Type.php, On associe ce formulaire à une entité, il prend donc toute ses caractéristiques.
