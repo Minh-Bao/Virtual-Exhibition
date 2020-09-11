@@ -251,9 +251,32 @@ On met un filtre et on utilise une valeur par défaut.
 ```html
 {{ SubmitButtonText|default('Create Pin') }} <- revient à faire->
 {{ SubmitButtonText ?? 'Create Pin' }} 
-``
+```
 
 ### Astuce en cas de pépins
 
     Lorsque qu'une commande ne passe pas il peut être utile d'executer cette commande
     "symfony console cache:clear"
+
+
+### Message Flash
+    On peut creer des message flash:
+Dans le fichier de vue twig:
+
+```html.twig
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endfor %}
+``` 
+Dans le fichier controller
+
+```php
+
+$this->addFlash('type', 'message');
+
+```
+
+
+

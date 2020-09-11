@@ -1,17 +1,21 @@
-{% extends 'base.html.twig' %} {% block title pin.title %} {% block body %}
+{% extends 'layouts/base.html.twig' %} 
 
-<article>
-    <h1>{{ pin.title }}</h1>
-    <p>{{ pin.description }}</p>
-</article>
+{% block title pin.title %} 
 
-<a href="{{ path('app_pins_edit', {id: pin.id}) }}">Edit Artwork</a>
-<a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js_pin_delete_form').submit();">Delete Artwork</a>
-<a href="{{ path('app_home') }}">Back to menu</a>
+{% block body %}
 
-<form id="js_pin_delete_form" action="{{ path('app_pins_delete', {id:pin.id}) }}" method="POST" style="display: none;">
-    <input type="text" name="csrf" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
-    <input type="hidden" name="_method" value="DELETE">
-</form>
+    <article>
+        <h1>{{ pin.title }}</h1>
+        <p>{{ pin.description }}</p>
+    </article>
+
+    <a href="{{ path('app_pins_edit', {id: pin.id}) }}">Edit Artwork</a>
+    <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js_pin_delete_form').submit();">Delete Artwork</a>
+    <a href="{{ path('app_home') }}">Back to menu</a>
+
+    <form id="js_pin_delete_form" action="{{ path('app_pins_delete', {id:pin.id}) }}" method="POST" style="display: none;">
+        <input type="text" name="csrf" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
+        <input type="hidden" name="_method" value="DELETE">
+    </form>
 
 {% endblock %}
