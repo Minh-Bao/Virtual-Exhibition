@@ -172,8 +172,18 @@ On peut aussi passer par JS pour mettre un lien <a href> à la place:
     <input type="hidden" name="_method" value="DELETE">
 </form>
 ```
+##### Validation des formulaires:
+Dan le controller:
+"use Symfony\Component\Validator\Constraints as Assert;"
 
-#### Dataclass :
+Puis rajouter dans le fichier entity autant de fois qu'il y a des type de validation dans phpdoc au niveau des objet que l'on veut valider:
+"@Assert\(type de validation ex: NotBlank)" puis entre () les options a voir dans les fichier vendor/.../contraints
+
+Attention a bien desactier la validation html5(useless...) avec "formnovalidate"
+Aller dans Vendor/Symfony/validator/constraints et vous y trouver des type de validation pour les forms.
+
+
+##### Template de formulaire :
     On peut set les différente options du type de formulaire dans le fichier 
     /!\ Grace à la commande " symfony console make:form " on peut creer un template de formulaire qui sera stocké dans le fichier src/Form/(Variable)Type.php, On associe ce formulaire à une entité, il prend donc toute ses caractéristiques.
     On peut aussi set les différente options du formulaire dans la fonction builForm() " cela revient a modif createFormBuilder() "
@@ -197,7 +207,7 @@ $form = $this->createForm(PinType::class);
 ```
 
 
-### Check la validiter d'un Token
+### Check la validité d'un Token
 
 Cf: Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
