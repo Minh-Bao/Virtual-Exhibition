@@ -15,13 +15,14 @@
     -updatedAt
 
 
-## A faire
+## A faire/ A voir
 
--check le bundle flashy-bundle
--php unit
--symfony flex et système de recette (recipe): 
-cf "https://afsy.fr/avent/2017/08-symfony-flex-la-nouvelle-facon-de-developper-avec-symfony"
-cf "https://github.com/symfony/recipes"
+-nvm est un outil pour installer et utiliser a l'envie les différentes version de node.js
+
+-déployer gratuitement son appli avec Heroku: 
+cf:"https://www.heroku.com/"
+
+-installer npm ou yard cf: node.js
 
 -Http request methods
 -A voir redirectToRoute();
@@ -250,6 +251,8 @@ function (Request $request) {
 ```
 ### Astuce et trucs
 
+Lorsque que l'on voit un signe "~" collé devant le chemin d'un dossier cela faitr référence au dossier node_module.
+
 Attention a l'ordre des routes car Symfonie les charge/cherche puis match ou non dans un certain ordre.
 Pour pallier a certain problème de ce genre: on mettre des priorité aux routes. Par exemple priority=(int).
 
@@ -292,10 +295,71 @@ $this->addFlash('type', 'message');
 
 ### Bootstrap et Symfony
 
-Pour integrer boot strap dans symfony juste copier le link css et les script JS dans les block prevu a cet effet dans le base.html.twig
+    Pour integrer boot strap dans symfony juste copier le link css et les script JS dans les block prevu a cet effet dans le base.html.twig
 
-On peut aussi check dans la doc les theme bootstrap prédéfinis pour Symfony
-par exemple: "https://symfony.com/doc/current/form/form_themes.html"
+    On peut aussi check dans la doc les theme bootstrap prédéfinis pour Symfony
+    par exemple: https://symfony.com/doc/current/form/form_themes.html
+
+
+
+### Webpack
+
+    -En production penser a minifier/compiler le code pour le rendre plus lisible: on peut s'aider de sass pour le css ou encore de webpack qui est un bundle afin d'avoir des fichiers css ou js etc.. dédiés.
+    cf: "https://webpack.js.org/" 
+    /!\ Attention! très long à configurer.. Du coup Symfony a créer un bundle: Webpack Encore (utilisable même avec d'autre projet que Symfony) qui facilite la generation du fichier de config Webpack et des config comme apr exemple l'accès a Sass/SCSS ou encore Typescript
+
+{
+-voir asset ou ?CDN? : dossier ou est géré le css/JS/img et qui est servi pour processer Webpack.
+-check le bundle flashy-bundle
+-php unit
+-symfony flex et système de recette (recipe): 
+cf "https://afsy.fr/avent/2017/08-symfony-flex-la-nouvelle-facon-de-developper-avec-symfony"
+cf "https://github.com/symfony/recipes"
+}
+
+    Pour ce faire: installer le bundle webpack Encore avec composer, puis npm avec node.js
+    Puis regarder dans les dossier créer comme /asset/ où se trouve les fichier css et js ainsi que les fichier img et autres....
+
+    On se retrouve ainsi a travailler avec les dépendance JS et l'équivalent de composer pour php soit npm.
+
+    Aller dans le fichier /webpack.config.js qui va configurer pour nous Webpack, on peut le modifier comme par exemple :
+     ".addEntry('app', './assets/js/app.js')" où "app" est le nom du fichier cible se trouvant dans asset/js, on pourra le modifier, et aussi rajouter des entrées etc...
+
+    Avec la commande npm run vous aurez la liste des commande que vous pouvez exécuter pour ce faire.
+    Executer la commande npm run dev pour migrer les modifs faites dans assets dans un dossier qui sera créer : 
+    /public/build/ ou se trouveront tous nos dossier css, js etc...
+    Quand vous exécutez la cmd [npm run watch] pour automatiquement faire les compilations dès qu'un fichier sera modif.
+
+    (ndlr: le fichier /package.json et /package-lock.json sont les équivalent de /composer.json et /...lock)
+
+#### Importation des fichier CSS JS et Bootstrap avec Webpack
+
+##### CSS/JS
+    Pour charger les fichier JS et CSS il faut à la place de nos script et link tradionnels, appeler ces methodes du bundle webpack.
+    Pour css: {{ encore_entry_link_tags('app')}} où "app" est le ficheir cible
+    Pour JS:  {{ encore_entry_script_tags('app')}} où "app" est le fichier cible
+
+##### Bootstrap
+    Pour installer Bootstrap
+    Executer la cmd [npm install bootstrap --save-dev] ou bien "npm install bootstrap -D"
+
+    cf:"https://symfony.com/doc/current/frontend/encore/bootstrap.html"
+
+    /!\Si on check bien les warning mess: il faut install jquery et popper.
+
+    Donc executer la cmd [npm i jquery popper.js -D]
+    Et le enabled dans le fichier assert/app.js
+
+
+
+    /!\ Bien penser a modifier le chemin d'accès du link dans le fichier base.html.twig
+
+        On modifiera toujours les fichiers dans /assets/ puis executer les commandes npm run dev/watch
+
+        A chaque fois que l'on modifie la configuration dans Webpack.config.js il faut couper et relancer nmp run watch
+        si il ya une erreur ou un paquet manquant, suivre les instructions.
+
+
 
 
 
