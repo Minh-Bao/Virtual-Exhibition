@@ -11,7 +11,6 @@
 
     <a href="{{ path('app_pins_edit', {id: pin.id}) }}">Edit Artwork</a>
     <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js_pin_delete_form').submit();">Delete Artwork</a>
-    <a href="{{ path('app_home') }}">Back to menu</a>
 
     <form id="js_pin_delete_form" action="{{ path('app_pins_delete', {id:pin.id}) }}" method="POST" style="display: none;">
         <input type="text" name="csrf" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">

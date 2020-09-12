@@ -17,6 +17,7 @@
 
 ## A faire
 
+-check le bundle flashy-bundle
 -php unit
 -symfony flex et système de recette (recipe): 
 cf "https://afsy.fr/avent/2017/08-symfony-flex-la-nouvelle-facon-de-developper-avec-symfony"
@@ -287,6 +288,14 @@ Dans le fichier controller
 $this->addFlash('type', 'message');
 
 ```
+
+
+### Bootstrap et Symfony
+
+Pour integrer boot strap dans symfony juste copier le link css et les script JS dans les block prevu a cet effet dans le base.html.twig
+
+On peut aussi check dans la doc les theme bootstrap prédéfinis pour Symfony
+par exemple: "https://symfony.com/doc/current/form/form_themes.html"
 
 
 
