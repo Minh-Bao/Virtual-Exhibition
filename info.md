@@ -417,6 +417,8 @@ cf "https://github.com/symfony/recipes"
     /public/build/ ou se trouveront tous nos dossier css, js etc...
     Quand vous exécutez la cmd [npm run watch] pour automatiquement faire les compilations dès qu'un fichier sera modif.
 
+    Pour compiler le projet et le mettre en production executer la cmd [npm run-script build]
+
     (ndlr: le fichier /package.json et /package-lock.json sont les équivalent de /composer.json et /...lock)
 
 #### Importation des fichier CSS JS et Bootstrap avec Webpack
@@ -426,7 +428,7 @@ cf "https://github.com/symfony/recipes"
     Pour css: {{ encore_entry_link_tags('app')}} où "app" est le ficheir cible
     Pour JS:  {{ encore_entry_script_tags('app')}} où "app" est le fichier cible
 
-##### Bootstrap
+##### Bootstrap importer via Sass
     Pour installer Bootstrap
     Executer la cmd [npm install bootstrap --save-dev] ou bien "npm install bootstrap -D"
 
@@ -445,6 +447,15 @@ cf "https://github.com/symfony/recipes"
 
         A chaque fois que l'on modifie la configuration dans Webpack.config.js il faut couper et relancer nmp run watch
         si il ya une erreur ou un paquet manquant, suivre les instructions.
+
+
+
+##### Utiliser Jquery et Sass/Scss et bootstrap
+
+    Pour customiser le front utiliser ces deux langages dans le dossier /assert/
+    Le css et bootstrap avec le dossier SCSS
+    Je JS et Jquery avec le dossier JS
+
 
 
 ### Upload de fichier:
