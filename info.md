@@ -17,6 +17,9 @@
 
 ## A faire/ A voir
 
+-Pour resize l'image si le thumbnail ne veut pas s'afficher  et creer une erreur type memory-limit.... utiliser imagick
+
+
 -nvm est un outil pour installer et utiliser a l'envie les différentes version de node.js
 
 -déployer gratuitement son appli avec Heroku: 
@@ -256,6 +259,30 @@ devient
 $form = $this->createForm(PinType::class);
 ```
 
+    On peut dans le fichier src/form/(nomEntité)Type.php
+
+    Modifier la méthode buildform() et lui rajouter des options...
+    Par exemple pour rajouter des contraintes a des champs images du formulaire:
+```php
+public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+        ->add('imageFile', VichImageType::class, [
+            'label' => 'Image (PNG or JPG file)',
+            'required' => false,
+            'allow_delete' => true,
+            'delete_label' => 'Delete?',
+            'download_uri' => false,
+            'constraints' => [                     //
+                new Image(['maxSize' => '8M'])     //On instancie l'objet image qui contient cette contrainte maxSize...
+            ]
+        ])
+        ->add('title')
+        ->add('description')
+
+       ;
+    }``` 
+
 
 ### Check la validité d'un Token
 
@@ -432,6 +459,23 @@ cf "https://github.com/symfony/recipes"
 
     Suivre les étapes de configuration du dépot git
     cf: "https://github.com/dustin10/VichUploaderBundle/blob/master/docs/installation.md"
+
+
+#### Pour resize une image 
+
+    Dl le bundle en exécutant cette cmd [composer require liip/imagine-bundle]
+    et voir cette page : "https://symfony.com/doc/master/bundles/LiipImagineBundle/installation.html#step-1-download-the-bundle"
+    ainsi que le dépot github : "https://github.com/liip/LiipImagineBundle"
+
+
+    /!\ use imagick
+
+
+### Annotation phpdoc
+
+    On peut ajouter des options en plus qui seront liées a des objets ou des méthodes en faisant ceci:
+
+
 
 
 
