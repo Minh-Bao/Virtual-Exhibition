@@ -43,7 +43,44 @@ Voir EntityManagerInterface....
 
 (*)Injection de dépendance: 
     la commande " symfony console debug:autowiring + (terme)" permets de voir tout ce qu'on peut injecter ou une injection en particulier .
+### Doctrine
 
+    Installer le bundle doctrine.
+    Creer une Database avec la cmd [symfony console ].
+
+
+#### Creation/modif d'entité (Entity)
+
+    Executer la cmd [symfony console make:entity (nomDeLentité)]
+    (...) y/N? ->Yes
+    Puis entrer le nom des champs le type ect...
+    Puis [enter] pour valider
+
+    Cela crée un fichier (nomDeLentité).php dans le dossier "src/Entity", avec ces annotations ainsi que des mérhodes 
+    Setter et Getter.
+
+#### Migration
+
+    Executer la cmd [symfony console make:migration]
+    Un fichier Version(DateEtHeureDuFichier).php dans le dossier /migrations
+    Ce fichier contient les requetes sql pour modifier la BDD.
+    Dans la méthode getDescription() on peut ajouter un résumé de l'action du fichier.
+    
+    ex: function getDescription(){}return 'Add image_name field to (nomDeLentité) table';
+
+    /!\ A noter la notation pour les attributs de l'entité se font en camelCase par contre elle seront traduites dans la BDD en snake_case
+    cf: fichier doctrine.yaml dans config/packages.
+
+    Enfin si tout est ok appliquer la migration avec la cmd [symfony console doctrine:migrations:migrate]
+
+    (y/n?)->yes
+
+#### Se connecter a la BDD avec le Terminal pour vérifer que tout la migration a bien été faites.
+
+    Exécuter la cmd [mysl -u root] si pas de mdp, 
+    Sinon [mysql -u (user) -p] puis entrer le mdp a sa demande.
+
+    puis les habituelles requetes sql pour agir sur la bdd.
 
 
 ### Les Formulaires
@@ -300,9 +337,19 @@ $this->addFlash('type', 'message');
     On peut aussi check dans la doc les theme bootstrap prédéfinis pour Symfony
     par exemple: https://symfony.com/doc/current/form/form_themes.html
 
+### Utilisation des Traits:
+
+    cf:"https://weenesta.com/fr/blog/post/utiliser-traits-symfony"
+
+    Un TRait en POO:
+
+    cf:"https://www.php.net/manual/fr/language.oop5.traits.php"
 
 
-### Webpack
+
+### Webpack avec Webpack encore
+
+    cf: "https://weenesta.com/fr/blog/post/symfony-webpack"
 
     -En production penser a minifier/compiler le code pour le rendre plus lisible: on peut s'aider de sass pour le css ou encore de webpack qui est un bundle afin d'avoir des fichiers css ou js etc.. dédiés.
     cf: "https://webpack.js.org/" 
