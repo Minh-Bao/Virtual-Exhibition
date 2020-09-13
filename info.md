@@ -56,8 +56,10 @@ Voir EntityManagerInterface....
     Puis entrer le nom des champs le type ect...
     Puis [enter] pour valider
 
-    Cela crée un fichier (nomDeLentité).php dans le dossier "src/Entity", avec ces annotations ainsi que des mérhodes 
+    Cela crée un fichier (nomDeLentité).php dans le dossier "src/Entity", avec ses annotations ainsi que des méthodes 
     Setter et Getter.
+
+    Les différentes class et attributs de l'entité seront en générale mappé avec la BDD.
 
 #### Migration
 
@@ -81,6 +83,15 @@ Voir EntityManagerInterface....
     Sinon [mysql -u (user) -p] puis entrer le mdp a sa demande.
 
     puis les habituelles requetes sql pour agir sur la bdd.
+
+
+### Pour valider les changements dans Git
+
+    Executer les cmd suivantes:
+
+    [git status]
+    [git add -A]
+    [git commit -m "message de commit"]
 
 
 ### Les Formulaires
@@ -288,6 +299,8 @@ function (Request $request) {
 ```
 ### Astuce et trucs
 
+Vider le cache execute la cmd [symfony console cache:clear]
+
 Lorsque que l'on voit un signe "~" collé devant le chemin d'un dossier cela faitr référence au dossier node_module.
 
 Attention a l'ordre des routes car Symfonie les charge/cherche puis match ou non dans un certain ordre.
@@ -405,6 +418,22 @@ cf "https://github.com/symfony/recipes"
 
         A chaque fois que l'on modifie la configuration dans Webpack.config.js il faut couper et relancer nmp run watch
         si il ya une erreur ou un paquet manquant, suivre les instructions.
+
+
+### Upload de fichier:
+
+    Suivre les instructions de la doc.
+    cf: "https://symfony.com/doc/current/controller/upload_file.html":
+
+    Ou utiliser le bundle "VichUploaderBundle" 
+    Installer le bundle avec la cmd [composer require vich/uploader-bundle]
+    |->Comme c'est un bundle de contribution et non officiel il nous demande si l'on veut installer les recettes:
+    "Yes"
+
+    Suivre les étapes de configuration du dépot git
+    cf: "https://github.com/dustin10/VichUploaderBundle/blob/master/docs/installation.md"
+
+
 
 
 

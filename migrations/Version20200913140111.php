@@ -14,7 +14,7 @@ final class Version20200913140111 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Add image_name to pins table';
     }
 
     public function up(Schema $schema) : void
