@@ -28,6 +28,8 @@ cf:"https://www.heroku.com/"
 
 -installer npm ou yard cf: node.js
 
+
+-Extension Twig...... (Creer des méthodes dans le fichier "src/Twig/appExtension.php" et les appeler depuis les fichier .twig)
 -Http request methods
 -A voir redirectToRoute();
 -Alias Symfony console sc dans le terminal
@@ -355,7 +357,7 @@ On met un filtre et on utilise une valeur par défaut.
     On peut creer des message flash:
 Dans le fichier de vue twig:
 
-```html.twig
+```html
 {% for type, messages in app.flashes %}
     {% for message in messages %}
         {{ message }}
@@ -373,7 +375,7 @@ $this->addFlash('type', 'message');
 
 ### Bootstrap et Symfony
 
-    Pour integrer boot strap dans symfony juste copier le link css et les script JS dans les block prevu a cet effet dans le base.html.twig
+    Pour integrer bootstrap dans symfony juste copier le link css et les script JS dans les block prevu a cet effet dans le base.html.twig
 
     On peut aussi check dans la doc les theme bootstrap prédéfinis pour Symfony
     par exemple: https://symfony.com/doc/current/form/form_themes.html
@@ -448,7 +450,32 @@ cf "https://github.com/symfony/recipes"
 
     /!\ Bien penser a modifier le chemin d'accès du link dans le fichier base.html.twig
 
-        On modifiera toujours les fichiers dans /assets/ puis executer les commandes npm run dev/watch
+        On modifiera toujours les fichiers dans /assets/ puis executer les commandes npm run dev/watch afin qu'il se mettent a jour dans public/build/
+
+        Pour appeler une propriété Bootstrap dans le fichier scss il suffit de préfixer les propriété d'un
+        "@extend " puis un ou plusieurs propriété séparées d'une virgule.
+
+exemple:
+```scss
+    img {
+        @extend .mb-2, .rounded, .shadow, .img-thumbnail
+    }
+``` 
+autre exemple de syntaxe de fichier scss ou il y a une structure et notion d'héritage.
+```scss
+.vich-image{
+    .form-check {
+        @extend .mt-3;
+    }
+
+    img {
+        @extend .mb-2;
+        @extend .rounded;
+        @extend .shadow;
+        @extend .img-thumbnail;
+    }
+}
+``` 
 
         A chaque fois que l'on modifie la configuration dans Webpack.config.js il faut couper et relancer nmp run watch
         si il ya une erreur ou un paquet manquant, suivre les instructions.
