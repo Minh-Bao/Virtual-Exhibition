@@ -13,6 +13,7 @@
     -description
     -createdAt
     -updatedAt
+    -imageFile
 
 
 ## A faire/ A voir
@@ -379,11 +380,15 @@ $this->addFlash('type', 'message');
 
 ### Utilisation des Traits:
 
-    cf:"https://weenesta.com/fr/blog/post/utiliser-traits-symfony"
+    cf: "https://weenesta.com/fr/blog/post/utiliser-traits-symfony"
+        "https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/1667373-les-traits"
 
-    Un TRait en POO:
+    Un Trait en POO:
 
     cf:"https://www.php.net/manual/fr/language.oop5.traits.php"
+
+    Dans nos projet il est bon de créer un dossier "src/Entity/Traits" Et d'y placer tous nos fichier traits.php
+    On peut aussi creer dans ces fichiers un namespace : "namespace App\Entity\Traits"
 
 
 
@@ -486,7 +491,15 @@ cf "https://github.com/symfony/recipes"
 
     On peut ajouter des options en plus qui seront liées a des objets ou des méthodes en faisant ceci:
 
+### MAJ de composer etc....
 
+    Connaitre sa version de Symfony cmd [symfony console --version]
+    Pour faire une mise a jour automatique des dépendences bundle etc... exécuter la cmd [composer update]
+    Pour voir la liste de ses recettes et les MAJ possibles executez la cmd [composer recipes]
+
+
+
+### AUTHENTIFICATION/LOGIN ETC....
 
 
 
