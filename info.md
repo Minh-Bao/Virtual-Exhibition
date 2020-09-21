@@ -554,8 +554,21 @@ $user1->setFirstName('John');
 $em = $container->get('doctrine')->getManager(); //appeler EntityManager
 $em->persist($user1);    //persister
 $em->flush();            // Maj la BDD
-``` 
 
+
+$userRepo = $em->getRepository(User::class);    //pour recupere certaine entree
+=> App\Repository\UserRepository {#2902}
+$pinRepo = $em->getRepository(Pin::class);
+=> App\Repository\PinRepository {#2922}
+
+$p1 = $pinRepo->find(1);  //puis on fait appel au methode de la class en l'ocurrence recuperer le pin avec id 1 et on le met dans une variable $p1
+$p1->getUser()->getFirstName(); // puis de meme pour recup les donnée on fait appel au getters sorti expected: "john"
+
+//Puis persist et flush
+``` 
+##### Peupler la BDD avec de fausse donnée à l'aide de Fixtures
+
+    cf google.....
 
 
 ### MAJ de composer etc....
