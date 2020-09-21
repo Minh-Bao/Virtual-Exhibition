@@ -67,12 +67,25 @@ Voir EntityManagerInterface....
 
     Les différentes class et propriete attributs de l'entité seront en générale mappé avec la BDD.
 
-    Enfin la commande crée automatique un repository et ses fichiers. 
+    Enfin la commande crée automatique une class repository et ses fichiers. 
     ex: "src/Repository/(nomDeLentité)Repository.php"
 
     Et met a jour le fichier "config.yml"
 
     On peut mettre a jour l'entité avec la même commande .
+
+##### Creation d'une relation entre deux tables:
+
+    Lors de la creation d'une entité puis d'un champ on peut y mettre comme type au lieu de string apr exemple 
+    "relation" puis suivre les instruction pour y mettre le type de relation ManyToMany, ManyToOne etc....
+
+    /!\Lors de la migration de la BDD [symfony doctrine:migrations:migrate]
+    Il est possible qu'il y ait conflit car des champ on deja été crée et que ces champs rentre en conflit avec ceux que l'on veut creer.
+    Dans ce cas on peut supprimer ou vider la table problématique et recommencer la procédure.
+    -> [symfony console doctrine:database:create]
+    -> [symfony doctrine:migrations:migrate]
+    Grace a nos fichier de migrations toujours en place on va recreer les tables vierge avec les bonnes relations
+
 
 #### Migration
 
