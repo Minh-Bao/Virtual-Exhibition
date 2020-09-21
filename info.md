@@ -1,4 +1,4 @@
-### Description d'un Pin
+## Description d'un Pin
 
     -Title
     -Description
@@ -6,7 +6,7 @@
     -Auteur
     -Comment (?)
 
-#### Description de la table pins
+### Description de la table pins
 
     -id
     -title
@@ -62,10 +62,17 @@ Voir EntityManagerInterface....
     Puis entrer le nom des champs le type ect...
     Puis [enter] pour valider
 
-    Cela crée un fichier (nomDeLentité).php dans le dossier "src/Entity", avec ses annotations ainsi que des méthodes 
+    Cela crée un fichier "src/Entity/(nomDeLentité).php", avec ses annotations ainsi que des méthodes 
     Setter et Getter.
 
-    Les différentes class et attributs de l'entité seront en générale mappé avec la BDD.
+    Les différentes class et propriete attributs de l'entité seront en générale mappé avec la BDD.
+
+    Enfin la commande crée automatique un repository et ses fichiers. 
+    ex: "src/Repository/(nomDeLentité)Repository.php"
+
+    Et met a jour le fichier "config.yml"
+
+    On peut mettre a jour l'entité avec la même commande .
 
 #### Migration
 
@@ -89,6 +96,8 @@ Voir EntityManagerInterface....
     Sinon [mysql -u (user) -p] puis entrer le mdp a sa demande.
 
     puis les habituelles requetes sql pour agir sur la bdd.
+
+    /!\ lors de la creation de la table, on peut mettre un champ avec une contrainte d'unicité afin de ne pas avoir deux fois la même valeur a un champ (ex: 2 fois la même adresse mail on verra ainsi dans l'entité User un attribut mail avec une valeur "unique = true")
 
 
 ### Pour valider les changements dans Git
@@ -526,7 +535,21 @@ autre exemple de syntaxe de fichier scss ou il y a une structure et notion d'hé
 
 
 
-### AUTHENTIFICATION/LOGIN ETC....
+### AUTHENTIFICATION/LOGIN SECURITE ETC....
+
+    cf:"https://symfony.com/doc/current/security.html"
+
+    Pour creer un entité User on peut directement taper la cmd [symfony console make:user] 
+    On va creer un user avec tous les proprietés pour la sécu/authen.
+
+    le fichier src/entity/User.php est crée
+    le fichier src/Repository/UserRepository.php aussi
+    On met a jour le fichier config/packages/security.yaml
+
+    /!\Notez bien que la class User implemente UserInterface
+    Lorsque l'on implemente une interface en POO cela revient a signer un contrat avec cette interface 
+    On doit ainsi définir dans l'entité toutes les méthodes abstraites qui ont été défini au niveau de l'interface
+    https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/oriente-objet-methode-classe-abstraite/
 
 
 
