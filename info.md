@@ -527,6 +527,24 @@ autre exemple de syntaxe de fichier scss ou il y a une structure et notion d'hé
 
     On peut ajouter des options en plus qui seront liées a des objets ou des méthodes en faisant ceci:
 
+### Shell interactif Psysh
+    Installation du bundle Psysh afin d'avoir un shell interactif dans la console et executer du code php par exemple.
+    On peut le lancer ensuite avec la cmd [symfony console psysh] pour par exemple peupler sa BDD.
+
+##### Peupler la BDD en ligne de commande avec Psysh
+exemple:
+```php
+use App\Entity\User;
+$user1 = new User;
+$user1->setFirstName('John');
+
+$em = $container->get('doctrine')->getManager(); //appeler EntityManager
+$em->persist($user1);    //persister
+$em->flush();            // Maj la BDD
+``` 
+
+
+
 ### MAJ de composer etc....
 
     Connaitre sa version de Symfony cmd [symfony console --version]
@@ -550,6 +568,18 @@ autre exemple de syntaxe de fichier scss ou il y a une structure et notion d'hé
     Lorsque l'on implemente une interface en POO cela revient a signer un contrat avec cette interface 
     On doit ainsi définir dans l'entité toutes les méthodes abstraites qui ont été défini au niveau de l'interface
     https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/oriente-objet-methode-classe-abstraite/
+
+    cf: "##### Peupler la BDD avec Psysh"
+
+#### Hashage d'un MDP:
+
+    /!\ Ne jamais insérer un MDP directement dans la BDD il faut pour cela le hasher avant!!
+    Puis on y ajoute un sel cad on concatene une chaine de caractere toujours de la même longueur, avant et/ou apres le hash.
+
+    La commande du bundle security[symfony console security:encode-password] hash un mdp.
+
+    Dans le fichier security.yaml on config le type d'encodage sur "auto" il prend ainsi le meilleur encodeur existant.
+    Ou encore plusieurs encodeur que l'on configurera sur different type.
 
 
 
