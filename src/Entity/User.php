@@ -51,13 +51,13 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Pin::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="user", orphanRemoval=true)
      */
-    private $pins;
+    private $pictures;
 
     public function __construct()
     {
-        $this->pins = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
 
@@ -164,30 +164,30 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Pin[]
+     * @return Collection|Picture[]
      */
-    public function getPins(): Collection
+    public function getPictures(): Collection
     {
-        return $this->pins;
+        return $this->pictures;
     }
 
-    public function addPin(Pin $pin): self
+    public function addPicture(Picture $picture): self
     {
-        if (!$this->pins->contains($pin)) {
-            $this->pins[] = $pin;
-            $pin->setUser($this);
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePin(Pin $pin): self
+    public function removePicture(Picture $picture): self
     {
-        if ($this->pins->contains($pin)) {
-            $this->pins->removeElement($pin);
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
             // set the owning side to null (unless already changed)
-            if ($pin->getUser() === $this) {
-                $pin->setUser(null);
+            if ($picture->getUser() === $this) {
+                $picture->setUser(null);
             }
         }
 

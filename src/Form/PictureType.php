@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Pin;
+use App\Entity\Picture;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PinType extends AbstractType
+class PictureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,7 +31,7 @@ class PinType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Pin::class,
+            'data_class' => Picture::class,
         ]);
     }
 }

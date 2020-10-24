@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Pin;
+use App\Entity\Picture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Pin|null find($id, $lockMode = null, $lockVersion = null)
- * @method Pin|null findOneBy(array $criteria, array $orderBy = null)
- * @method Pin[]    findAll()
- * @method Pin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Picture|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Picture|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Picture[]    findAll()
+ * @method Picture[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PinRepository extends ServiceEntityRepository
+class PictureRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Pin::class);
+        parent::__construct($registry, Picture::class);
     }
 
     // /**
-    //  * @return Pin[] Returns an array of Pin objects
+    //  * @return Picture[] Returns an array of Picture objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PinRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Pin
+    public function findOneBySomeField($value): ?Picture
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

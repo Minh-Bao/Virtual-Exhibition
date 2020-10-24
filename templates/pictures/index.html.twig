@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Virtual Exhibition v.1' %}
+
+{% block body %}
+    {% if pictures|length > 0 %}
+        <h1 class="mb-4 text-center text-muted">{{ pluralize(pictures|length, 'ArtWork') }}</h1>
+
+        {% for row in pictures|batch(3) %}
+            <div class="row mb-5">
+            {% for picture in row %}
+                <div class="col-md-4">
+                    <article class="picture bg-white rounded shadow">
+                        <div class="mw-100 overflow-hidden rounded-top">
+                            <a href="{{ path('app_pictures_show', {id: picture.id}) }}">
+                                <img src="{{ (picture.imageName ? ('uploads/pictures/'~ picture.imageName) : asset('build/images/placeholder.jpg')) |
+                                imagine_filter('squared_thumbnail_medium') }}" alt="{{ picture.title }}" 
+                                class="w-100"/>
+                            </a>
+                        </div>
+                        <h2 class="h5 pl-3 pt-3"><a href="{{ path('app_pictures_show', {id: picture.id}) }}" class="text-secondary text-decoration-none">{{ picture.title }}</a></h2>
+                        <p class="pl-3 pb-3 text-muted "><small>Submitted by {{ picture.user.fullName}}</small></p>
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="h1 mt-5 text-center">No Artwork yet. <a href="{{ path('app_pictures_create') }}">Be the first!</a></p>
+    {% endif %}
+{% endblock %}

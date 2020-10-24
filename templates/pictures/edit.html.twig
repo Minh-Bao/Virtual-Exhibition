@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Edit Picture #' ~ picture.id %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto" >
+            <h1>Edit Picture #{{ picture.id }}</h1>
+             
+            {{ include('pictures/_form.html.twig', { SubmitButtonText: 'Update Art' }) }}
+
+        </div>
+    </div>
+
+
+{% endblock %}

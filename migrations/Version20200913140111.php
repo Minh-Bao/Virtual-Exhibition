@@ -14,18 +14,18 @@ final class Version20200913140111 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add image_name to pins table';
+        return 'Add image_name to pictures table';
     }
 
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE pins ADD image_name VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE pictures ADD image_name VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE pins DROP image_name');
+        $this->addSql('ALTER TABLE pictures DROP image_name');
     }
 }
