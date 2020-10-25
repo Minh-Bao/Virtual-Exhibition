@@ -46,9 +46,7 @@ class PicturesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $janeDoe = $userRepo->findOneBy(['email' => 'janedoe@example.com']);
-            $picture->setUser($janeDoe);
-            
+            $picture->setUser($this->getUser());
             $this->em->persist($picture);
             $this->em->flush();
 
