@@ -4,7 +4,11 @@
 
 {% block body %}
     {% if pictures|length > 0 %}
-        <h1 class="mb-4 text-center text-muted">{{ pluralize(pictures|length, 'ArtWork') }}</h1>
+        <h1 class="mb-3 text-center text-muted">{{ pluralize(pictures|length, 'ArtWork') }}</h1>
+
+        <div class="text-center mb-3" >
+            L'expérience coloniale photographiée en Nouvelle Calédonie et au Vanuatu......
+        </div>
 
         {% for row in pictures|batch(3) %}
             <div class="row mb-5">
