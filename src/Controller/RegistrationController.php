@@ -50,6 +50,8 @@ class RegistrationController extends AbstractController
             $em->flush();
 
             // generate a signed url and email it to the user
+
+            dd($this->emailVerifier);
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('noreply@virtualexibit.com', 'virtualexibit'))
